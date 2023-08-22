@@ -23,3 +23,37 @@ const getElements = () => {
 obtenerDatosButton.addEventListener("click", () => {
   getElements();
 });
+
+// Enviar Datos al Servidor
+
+const enviarDatosButton = document.getElementById("enviarDatos");
+
+const postToApi = (newPost) => {
+  const url = "https://jsonplaceholder.typicode.com/posts";
+  const information = {
+    title: "Ejemplo de titulo del Elemento",
+    body: "Ejemplo del cuerpo del elemento",
+  };
+
+  // Configurar la solicitud
+  const opciones = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(information),
+  };
+
+  fetch(url, opciones)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Respuesta:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+enviarDatosButton.addEventListener("click", () => {
+  postToApi();
+});
