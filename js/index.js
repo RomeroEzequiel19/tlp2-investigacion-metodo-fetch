@@ -28,7 +28,7 @@ obtenerDatosButton.addEventListener("click", () => {
 
 const enviarDatosButton = document.getElementById("enviarDatos");
 
-const postToApi = (newPost) => {
+const postEnviarDatos = () => {
   const url = "https://jsonplaceholder.typicode.com/posts";
   const information = {
     title: "Ejemplo de titulo del Elemento",
@@ -55,5 +55,5 @@ const postToApi = (newPost) => {
 };
 
 enviarDatosButton.addEventListener("click", () => {
-  postToApi();
+  postEnviarDatos();
 });
