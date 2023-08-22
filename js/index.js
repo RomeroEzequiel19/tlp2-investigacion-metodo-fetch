@@ -57,3 +57,25 @@ const postEnviarDatos = () => {
 enviarDatosButton.addEventListener("click", () => {
   postEnviarDatos();
 });
+
+// 3- Descargar una Imagen
+
+const imagenElemento = document.getElementById("imagenElemento");
+
+const descargarImagen = () => {
+  fetch("https://cors-anywhere.herokuapp.com/https://via.placeholder.com/150", {
+    method: "GET",
+  })
+    .then((response) => response.blob())
+    .then((blob) => {
+      const objectUrl = URL.createObjectURL(blob);
+      imagenElemento.src = objectUrl;
+    })
+    .catch((error) => {
+      console.error("Error al descargar la imagen:", error);
+    });
+};
+
+imagenElemento.addEventListener("click", () => {
+  descargarImagen();
+});
