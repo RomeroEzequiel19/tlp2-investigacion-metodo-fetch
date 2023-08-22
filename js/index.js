@@ -61,15 +61,18 @@ enviarDatosButton.addEventListener("click", () => {
 // 3- Descargar una Imagen
 
 const imagenElemento = document.getElementById("imagenElemento");
+const div = document.getElementById("divImg");
 
-const descargarImagen = () => {
-  fetch("https://cors-anywhere.herokuapp.com/https://via.placeholder.com/150", {
+const descargarImagen = async (url) => {
+  await fetch(url, {
     method: "GET",
   })
     .then((response) => response.blob())
     .then((blob) => {
-      const objectUrl = URL.createObjectURL(blob);
-      imagenElemento.src = objectUrl;
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(blob);
+      div.innerHTML = "";
+      div.appendChild(img);
     })
     .catch((error) => {
       console.error("Error al descargar la imagen:", error);
@@ -77,5 +80,7 @@ const descargarImagen = () => {
 };
 
 imagenElemento.addEventListener("click", () => {
-  descargarImagen();
+  const urlImg =
+    "https://cors-anywhere.herokuapp.com/https://via.placeholder.com/150";
+  descargarImagen(urlImg);
 });
